@@ -29,23 +29,22 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int n = (24 - 2) / 2 + 1;
-        int m = 15;
+        final int N = 12, M = 15;
 
-        short[] e = new short[n];
-        for (int i = 0; i < n; i++) {
+        short[] e = new short[N];
+        for (int i = 0; i < N; i++) {
             e[i] = (short) (24 - 2 * i);
         }
 
         Random random = new Random();
-        float[] x = new float[m];
-        for (int i = 0; i < m; i++) {
+        float[] x = new float[M];
+        for (int i = 0; i < M; i++) {
             x[i] = random.nextFloat(15) - 8;
         }
 
-        float[][] k = new float[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        float[][] k = new float[N][M];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
                 k[i][j] = getNumber(e[i], x[j]);
             }
         }

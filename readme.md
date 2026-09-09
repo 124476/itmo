@@ -30,4 +30,9 @@ javac Main.java
 jar -c -f main.jar -e Main Main.class
 ```
 
+Запуск исполняемого файла .jar
+```
+java -jar main.jar
+```
+
 </details>

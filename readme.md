@@ -1,5 +1,9 @@
 # ИТМО | СППО | Программирование | Лабораторные работы
 
-- [x] [Лаба 1 - отчет](lab1/docs/Отчет.pdf)
-- [x] [Лаба 1 - исходный код](lab1/src/Main.java)
+<details>
+<summary>Лаба 1</summary>
 
+- [x] [Отчет](lab1/docs/Отчет.pdf)
+- [x] [Исходный код](lab1/src/Main.java)
+
+</details>

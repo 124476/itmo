@@ -37,9 +37,8 @@ public class Main {
             e[i] = (short) (24 - 2 * i);
         }
 
-        float[] x = new float[m];
         Random random = new Random();
-
+        float[] x = new float[m];
         for (int i = 0; i < m; i++) {
             x[i] = random.nextFloat(15) - 8;
         }

@@ -1,7 +1,9 @@
 # ИТМО | СППО | Программирование | Лабораторные работы
 
 <details>
-<summary>Лаба 1</summary>
+<summary style="font-size: 1.5em; font-weight: bold;">Лаба 1</summary>
+
+<p></p>
 
 - [x] [Отчет](lab1/docs/Отчет.pdf)
 - [x] [Исходный код](lab1/src/Main.java)

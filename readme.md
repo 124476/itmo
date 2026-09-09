@@ -1,12 +1,14 @@
 # ИТМО | СППО | Программирование | Лабораторные работы
 
-<details>
-<summary style="font-size: 1.5em; font-weight: bold;">Лаба 1</summary>
-
-<p></p>
+## Лаба 1
 
 - [x] [Отчет](lab1/docs/Отчет.pdf)
 - [x] [Исходный код](lab1/src/Main.java)
+
+<details>
+<summary>работа с helios</summary>
+
+<p></p>
 
 Подключение к helios
 ```

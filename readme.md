@@ -6,7 +6,7 @@
 - [x] [Исходный код](lab1/src/Main.java)
 
 <details>
-<summary>работа с helios</summary>
+<summary>Работа на helios</summary>
 
 <p></p>
 

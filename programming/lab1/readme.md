@@ -2,8 +2,8 @@
 
 ## Ссылки
 
-- [x] [Отчет](programming/lab1/docs/report.pdf)
-- [x] [Исходный код](programming/lab1/src/Main.java)
+- [x] [Отчет](docs/report.pdf)
+- [x] [Исходный код](src/Main.java)
 
 ## Работа на helios
 

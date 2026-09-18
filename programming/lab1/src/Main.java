@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Main {
     public static float getNumber(short e, float x) {
         switch (e) {
@@ -36,10 +34,9 @@ public class Main {
             e[i] = (short) (24 - 2 * i);
         }
 
-        Random random = new Random();
         float[] x = new float[M];
         for (int i = 0; i < M; i++) {
-            x[i] = random.nextFloat(15) - 8;
+            x[i] = (float)Math.random() * 15 - 8;
         }
 
         float[][] k = new float[N][M];

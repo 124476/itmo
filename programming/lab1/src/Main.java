@@ -20,7 +20,7 @@ public class Main {
     public static void printMatrix(float[][] k) {
         for (var floats : k) {
             for (var val : floats) {
-                System.out.printf("%.4f ", val);
+                System.out.printf("%.4f\t", val);
             }
             System.out.println();
         }
@@ -29,17 +29,17 @@ public class Main {
     public static void main(String[] args) {
         final int N = 12, M = 15;
 
-        short[] e = new short[N];
+        final short[] e = new short[N];
         for (int i = 0; i < N; i++) {
             e[i] = (short) (24 - 2 * i);
         }
 
-        float[] x = new float[M];
+        final float[] x = new float[M];
         for (int i = 0; i < M; i++) {
             x[i] = (float)Math.random() * 15 - 8;
         }
 
-        float[][] k = new float[N][M];
+        final float[][] k = new float[N][M];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 k[i][j] = getNumber(e[i], x[j]);

@@ -151,4 +151,5 @@ rm -rf leafeon
 chmod u=rwx blastoise/unfezant
 rm -rf blastoise/unfezant
 
-cd ..
+echo -e "\n\nРезультат скрипта\n\n"
+ls -lR

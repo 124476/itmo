@@ -1,21 +1,21 @@
+chmod -R 777 lab0
+rm -r lab0
+
 mkdir lab0
 cd lab0
 
 # 1
 
-mkdir blastoise
-mkdir blastoise/darumaka
-mkdir blastoise/gastrodon
-mkdir blastoise/unfezant
+mkdir -p blastoise/darumaka
+mkdir -p blastoise/gastrodon
+mkdir -p blastoise/unfezant
 
-mkdir leafeon
-mkdir leafeon/wynaut
-mkdir leafeon/snubbull
-mkdir leafeon/beautifly
+mkdir -p leafeon/wynaut
+mkdir -p leafeon/snubbull
+mkdir -p leafeon/beautifly
 
-mkdir munna
-mkdir munna/exeggutor
-mkdir munna/teddiursa
+mkdir -p munna/exeggutor
+mkdir -p munna/teddiursa
 
 echo "Возможности = Overland=6 Surface=3 Sky=8 Jump=2 Power2=0 Intelligence=4 Chilled=0 Freezer=0 Stealth=0" >> blastoise/froslass
 echo "Способности = Mind Mold Insomnia Forewarn" >> blastoise/drowzee
@@ -108,7 +108,7 @@ chmod u-r leafeon/swampert
 
 # 4.2
 
-ls -l -R . 2>/tmp/errs.txt | grep "fe" | sort -k6,7 -r > /tmp/fe_files.txt
+ls -l -R . 2>/tmp/errs.txt | grep "fe" | sort -k6,7 -r
 
 # 4.3
 
@@ -116,17 +116,15 @@ sort -r steelix | cat -n
 
 # 4.4
 
-ls -l -R . | grep -v "total" | grep "to" | sort -k6,7
+ls -l -R . | grep "to" | grep -v "total" | sort -k6,7
 
 # 4.5
 
-ls -l -R . 2>&1 | grep "ti" | sort -r -k9
+ls -l -R . | grep "ti" | sort -r -k9
 
 # 4.6
 
-touch bfile1
 echo -e "Строка1\nСтрока2" > bfile1
-touch munna/bfile2
 echo -e "Строка3\nСтрока4" > munna/bfile2
 
 cat b* */b* */*/b* 2>> /tmp/errs_2.txt | sort | cat -n
@@ -136,19 +134,21 @@ rm munna/bfile2
 
 # 5
 
-rm corphish
-rm blastoise/drowzee
-rm Copy_*
+rm -f corphish
+rm -f blastoise/drowzee
+rm -f Copy_*
 
 chmod u+r blastoise
-rm blastoise/drowzeecorphi*
+rm -f blastoise/drowzeecorphi*
 chmod u-r blastoise
 
 chmod u+rwx leafeon/snubbull
 chmod u+rwx leafeon/wynaut
 chmod u+rwx leafeon/beautifly
 chmod -R u+rwx leafeon
-rm -r leafeon
+rm -rf leafeon
 
 chmod u=rwx blastoise/unfezant
-rm -r blastoise/unfezant
+rm -rf blastoise/unfezant
+
+cd ..

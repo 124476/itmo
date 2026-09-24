@@ -108,21 +108,39 @@ chmod u-r leafeon/swampert
 
 # 4.2
 
-ls -l -R . 2>/tmp/errs.txt | grep "fe" | sort -k6,7 -r
+echo -e "\n4.2 пункт\n"
+
+ls -lR . 2>/tmp/errs.txt | grep "fe" | sort -k6,7 -r
+
+echo -e "\nВторой вариант без рекурсивных путей\n"
+
+ls -lR . 2>/tmp/errs.txt | grep "fe" | grep -v "./" | sort -k6,7 -r # Второй вариант без рекурсивного выделения файлов
 
 # 4.3
+
+echo -e "\n4.3 пункт\n"
 
 sort -r steelix | cat -n
 
 # 4.4
 
-ls -l -R . | grep "to" | grep -v "total" | sort -k6,7
+echo -e "\n4.4 пункт\n"
+
+ls -lR . | grep "to" | grep -v "total" | sort -k6,7
+
+echo -e "\nВторой вариант без рекурсивных путей\n"
+
+ls -lR . | grep "to" | grep -v "total" | grep -v "./" | sort -k6,7 # Второй вариант без рекурсивного выделения файлов
 
 # 4.5
+
+echo -e "\n4.5 пункт\n"
 
 ls -l -R . | grep "ti" | sort -r -k9
 
 # 4.6
+
+echo -e "\n4.6 пункт\n"
 
 echo -e "Строка1\nСтрока2" > bfile1
 echo -e "Строка3\nСтрока4" > munna/bfile2

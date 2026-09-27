@@ -16,6 +16,6 @@ public final class BellyDrum extends StatusMove {
 
     @Override
     protected String describe() {
-        return "использует BellyDrum";
+        return "использует Belly Drum";
     }
 }

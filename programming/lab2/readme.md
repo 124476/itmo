@@ -3,11 +3,23 @@
 Информацию о характеристиках брать с [сайта](https://pokemondb.net/search)
 
 Компиляция проекта
-```
-javac -encoding UTF-8 -cp "../Pokemon.jar;." Main.java
+
+## Windows
+```bash
+javac -encoding UTF-8 -cp "./Pokemon.jar;." Main.java
 ```
 
 Запуск
+```bash
+java -cp "./Pokemon.jar;." Main
 ```
-java -cp "../Pokemon.jar;." Main
+
+## Linux
+```bash
+javac -encoding UTF-8 -cp "./Pokemon.jar:." Main.java
+```
+
+Запуск
+```bash
+java -cp "./Pokemon.jar:." Main
 ```

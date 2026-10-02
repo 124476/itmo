@@ -2,12 +2,12 @@
 
 ## Лекции
 
-- [Лекция 1](lection1/)
-- [Лекция 2](lection2/)
+- [Лекция 1](lections/lection1.pdf)
+- [Лекция 2](lections/lection2.pdf)
 
 
 ## Лабы
 
-- [x] [Лаба 1](lab1/)
-- [x] [Лаба 2](lab2/)
+- [x] [Лаба 1](labs/lab1/)
+- [x] [Лаба 2](labs/lab2/)
 

@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
   <diagram name="Страница-1" id="UuNa8-1VBSL1iuMVcAxQ">
-    <mxGraphModel dx="2404" dy="1160" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3192" dy="1740" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -126,46 +126,28 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="3_TefM-_-xaRwS3oShUh-58" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;br&gt;&lt;div&gt;Effect&lt;/div&gt;" vertex="1">
-          <mxGeometry height="370" width="220" x="1350" y="380" as="geometry" />
+          <mxGeometry height="214" width="220" x="1350" y="380" as="geometry" />
         </mxCell>
         <mxCell id="3_TefM-_-xaRwS3oShUh-59" parent="3_TefM-_-xaRwS3oShUh-58" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
           <mxGeometry height="8" width="220" y="50" as="geometry" />
         </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-62" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static burn(Pokemon p)" vertex="1">
+        <mxCell id="3_TefM-_-xaRwS3oShUh-65" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ chance(double chance): Effect" vertex="1">
           <mxGeometry height="26" width="220" y="58" as="geometry" />
         </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-65" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ chance(double chance): Effect" vertex="1">
+        <mxCell id="3_TefM-_-xaRwS3oShUh-69" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ condition(Status): Effect" vertex="1">
           <mxGeometry height="26" width="220" y="84" as="geometry" />
         </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-69" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ condition(Status): Effect" vertex="1">
+        <mxCell id="3_TefM-_-xaRwS3oShUh-68" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ confuse(Pokemon p): Effect" vertex="1">
           <mxGeometry height="26" width="220" y="110" as="geometry" />
         </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-68" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ confuse(Pokemon p): Effect" vertex="1">
+        <mxCell id="3_TefM-_-xaRwS3oShUh-66" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static paralyze(Pokemon p)" vertex="1">
           <mxGeometry height="26" width="220" y="136" as="geometry" />
         </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-71" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static flinch(Pokemon p)" vertex="1">
+        <mxCell id="3_TefM-_-xaRwS3oShUh-76" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ stat(Stat stat, int value): Effect" vertex="1">
           <mxGeometry height="26" width="220" y="162" as="geometry" />
         </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-178" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static freeze(Pokemon p)" vertex="1">
-          <mxGeometry height="26" width="220" y="188" as="geometry" />
-        </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-66" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static paralyze(Pokemon p)" vertex="1">
-          <mxGeometry height="26" width="220" y="214" as="geometry" />
-        </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-73" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static poison(Pokemon p)" vertex="1">
-          <mxGeometry height="26" width="220" y="240" as="geometry" />
-        </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-74" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ static sleep(Pokemon p)" vertex="1">
-          <mxGeometry height="26" width="220" y="266" as="geometry" />
-        </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-76" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ stat(Stat stat, int value): Effect" vertex="1">
-          <mxGeometry height="26" width="220" y="292" as="geometry" />
-        </mxCell>
-        <mxCell id="3_TefM-_-xaRwS3oShUh-78" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ success(): boolean" vertex="1">
-          <mxGeometry height="26" width="220" y="318" as="geometry" />
-        </mxCell>
         <mxCell id="3_TefM-_-xaRwS3oShUh-79" parent="3_TefM-_-xaRwS3oShUh-58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ turns(int turns): Effect" vertex="1">
-          <mxGeometry height="26" width="220" y="344" as="geometry" />
+          <mxGeometry height="26" width="220" y="188" as="geometry" />
         </mxCell>
         <mxCell id="3_TefM-_-xaRwS3oShUh-108" edge="1" parent="1" source="3_TefM-_-xaRwS3oShUh-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="3_TefM-_-xaRwS3oShUh-42">
           <mxGeometry relative="1" as="geometry">

@@ -28,3 +28,16 @@ java -cp "./Pokemon.jar:" Main
 ```bash
 rm *.class */*.class */*/*.class
 ```
+
+Создание манифеста
+```bash
+cat > manifest <<EEE
+Class-Path: Pokemon.jar
+Main-Class: Main
+EEE
+```
+
+Упаковка в .jar
+```bash 
+jar -cfm main.jar manifest Main.class pokemon move
+```

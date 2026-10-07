@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
   <diagram name="Страница-1" id="UuNa8-1VBSL1iuMVcAxQ">
-    <mxGraphModel dx="3192" dy="1740" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1555" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -112,7 +112,7 @@
           <mxGeometry height="50" width="220" x="194" y="300" as="geometry" />
         </mxCell>
         <mxCell id="3_TefM-_-xaRwS3oShUh-142" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;br&gt;&lt;div&gt;Status&lt;/div&gt;" vertex="1">
-          <mxGeometry height="50" width="220" x="1460" y="270" as="geometry" />
+          <mxGeometry height="50" width="220" x="1460" y="465" as="geometry" />
         </mxCell>
         <mxCell id="3_TefM-_-xaRwS3oShUh-148" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;br&gt;&lt;div&gt;DamageMove&lt;/div&gt;" vertex="1">
           <mxGeometry height="142" width="220" x="385" y="670" as="geometry" />
@@ -153,7 +153,7 @@
         <mxCell id="bWo8wOG3IcA5jz3dVPaZ-9" parent="D7tUWxSAMbOUgzzC7rR3-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Poliwag(String name, int level)" vertex="1">
           <mxGeometry height="26" width="220" y="58" as="geometry" />
         </mxCell>
-        <mxCell id="D7tUWxSAMbOUgzzC7rR3-7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&amp;lt;&amp;lt;final&amp;gt;&amp;gt;&lt;/div&gt;Grumpig" vertex="1">
+        <mxCell id="D7tUWxSAMbOUgzzC7rR3-7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Grumpig&lt;/span&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="84" width="220" x="1220" y="1146" as="geometry" />
         </mxCell>
         <mxCell id="D7tUWxSAMbOUgzzC7rR3-8" parent="D7tUWxSAMbOUgzzC7rR3-7" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
@@ -601,7 +601,7 @@
             <mxPoint x="1640" y="730" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fws3Cehz2XmJYb7lr7Zl-36" edge="1" parent="1" source="3_TefM-_-xaRwS3oShUh-80" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="3_TefM-_-xaRwS3oShUh-142" value="">
+        <mxCell id="fws3Cehz2XmJYb7lr7Zl-36" edge="1" parent="1" source="3_TefM-_-xaRwS3oShUh-58" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1.003;exitY=0.14;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" target="3_TefM-_-xaRwS3oShUh-142" value="">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1430" y="360" as="sourcePoint" />
             <mxPoint x="1590" y="360" as="targetPoint" />

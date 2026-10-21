@@ -13,6 +13,13 @@ public class Main {
         Pokemon e2 = new Poliwhirl("Друган", 68);
         Pokemon e3 = new Poliwrath("Гигант", 69);
 
+        Pokemon[] ally = new Pokemon[3];
+        ally[0] = e1;
+        ally[1] = e2;
+        ally[2] = e3;
+
+        ((Poliwag) e1).setAlly(ally);
+
         b.addAlly(p1);
         b.addAlly(p2);
         b.addAlly(p3);

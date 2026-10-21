@@ -5,6 +5,8 @@ import move.status.*;
 import ru.ifmo.se.pokemon.*;
 
 public class Poliwag extends Pokemon {
+    private Pokemon[] ally;
+
     public Poliwag(String name, int level) {
         super(name, level);
         setType(Type.WATER);
@@ -12,5 +14,13 @@ public class Poliwag extends Pokemon {
 
         addMove(new DoubleTeam());
         addMove(new Blizzard());
+    }
+
+    public void setAlly(Pokemon[] ally) {
+        this.ally = ally;
+    }
+
+    public Pokemon[] getAlly() {
+        return this.ally;
     }
 }

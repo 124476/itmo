@@ -2,8 +2,12 @@
 
 Информацию о характеристиках брать с [сайта](https://pokemondb.net/search)
 
-Компиляция проекта
+Отправка кода в helios
+```bash
+scp -P 2222 -r lab1 s000000@helios.cs.ifmo.ru:~/
+```
 
+Компиляция проекта
 ## Windows
 ```bash
 javac -encoding UTF-8 -cp "./Pokemon.jar;." Main.java

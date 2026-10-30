@@ -1,0 +1,63 @@
+Schedule:
+  group_name: P3119
+  days:
+  - Day:
+      even_week: true
+      id: 0
+      date: Monday, 19 Oct 2026
+      schedule:
+      - Class:
+          id: 1
+          title: English A1 / Английский язык A1
+          class_format: Очный
+          type:
+            Type:
+              id: 1
+              title: Практика
+          campus:
+            Campus:
+              id: 0
+              address: Кронверкский пр., д.49, лит.А
+          time:
+            Time:
+              period: 5
+              from_time: '15:30'
+              to_time: '17:00'
+          auditory:
+            Auditory:
+              id: 1338
+              name: ауд. 1338
+          teacher:
+            Teacher:
+              id: 0
+              name: Иванова Полина Витальевна
+      - Class:
+          id: 2
+          title: English A1 / Английский язык A1
+          class_format: Очный
+          type:
+            Type:
+              id: 1
+              title: Практика
+          campus:
+            Campus:
+              id: 0
+              address: Кронверкский пр., д.49, лит.А
+          time:
+            Time:
+              period: 6
+              from_time: '17:10'
+              to_time: '18:40'
+          auditory:
+            Auditory:
+              id: 1338
+              name: ауд. 1338
+          teacher:
+            Teacher:
+              id: 0
+              name: Иванова Полина Витальевна
+  - Day:
+      even_week: true
+      id: 5
+      date: Saturday, 24 Oct 2026
+      schedule: []

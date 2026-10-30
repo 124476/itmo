@@ -1,0 +1,4 @@
+Config:
+  number: 1
+  key:
+    str: "Hello World!"

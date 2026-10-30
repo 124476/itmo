@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schedule>
+  <group_name>P3119</group_name>
+  <days>
+    <Day>
+      <even_week>true</even_week>
+      <id>0</id>
+      <date>Monday, 19 Oct 2026</date>
+      <schedule>
+        <Class>
+          <id>1</id>
+          <title>English A1 / Английский язык A1</title>
+          <class_format>Очный</class_format>
+          <type>
+            <Type>
+              <id>1</id>
+              <title>Практика</title>
+            </Type>
+          </type>
+          <campus>
+            <Campus>
+              <id>0</id>
+              <address>Кронверкский пр., д.49, лит.А</address>
+            </Campus>
+          </campus>
+          <time>
+            <Time>
+              <period>5</period>
+              <from_time>15:30</from_time>
+              <to_time>17:00</to_time>
+            </Time>
+          </time>
+          <auditory>
+            <Auditory>
+              <id>1338</id>
+              <name>ауд. 1338</name>
+            </Auditory>
+          </auditory>
+          <teacher>
+            <Teacher>
+              <id>0</id>
+              <name>Иванова Полина Витальевна</name>
+            </Teacher>
+          </teacher>
+        </Class>
+        <Class>
+          <id>2</id>
+          <title>English A1 / Английский язык A1</title>
+          <class_format>Очный</class_format>
+          <type>
+            <Type>
+              <id>1</id>
+              <title>Практика</title>
+            </Type>
+          </type>
+          <campus>
+            <Campus>
+              <id>0</id>
+              <address>Кронверкский пр., д.49, лит.А</address>
+            </Campus>
+          </campus>
+          <time>
+            <Time>
+              <period>6</period>
+              <from_time>17:10</from_time>
+              <to_time>18:40</to_time>
+            </Time>
+          </time>
+          <auditory>
+            <Auditory>
+              <id>1338</id>
+              <name>ауд. 1338</name>
+            </Auditory>
+          </auditory>
+          <teacher>
+            <Teacher>
+              <id>0</id>
+              <name>Иванова Полина Витальевна</name>
+            </Teacher>
+          </teacher>
+        </Class>
+      </schedule>
+    </Day>
+    <Day>
+      <even_week>true</even_week>
+      <id>5</id>
+      <date>Saturday, 24 Oct 2026</date>
+      <schedule/>
+    </Day>
+  </days>
+</Schedule>

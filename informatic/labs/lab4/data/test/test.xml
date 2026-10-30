@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GameConfig>
+  <window_size>
+    <item>800</item>
+    <item>600</item>
+  </window_size>
+  <window_title>PAC-MAN</window_title>
+  <fullscreen>false</fullscreen>
+  <mouse_sensitivity>1.4</mouse_sensitivity>
+  <key_bindings>
+    <up>Up</up>
+    <down>Down</down>
+    <left>Left</left>
+    <right>Right</right>
+  </key_bindings>
+  <difficulty_options>
+    <start_difficulty>Easy</start_difficulty>
+    <adaptive>false</adaptive>
+  </difficulty_options>
+</GameConfig>

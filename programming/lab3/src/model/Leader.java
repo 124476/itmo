@@ -1,29 +1,47 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Leader extends Person implements Battleable {
     private double patience;
+    private List<War> activeWars = new ArrayList<War>();
 
     public Leader(String name, double patience) {
         super(name);
         this.patience = patience;
     }
 
-    protected double getPatience() { return this.patience; }
+    protected double getPatience() {
+        return this.patience;
+    }
 
     protected void decreasePatience(double amount) {
         this.patience = Math.max(0, this.patience - amount);
     }
 
-    public void accuse(Leader enemy, String reason) throws BrokenOathException {
-        System.out.println(this.getName() + " обвиняет " + enemy.getName() + " в том, что он " + reason);
-        if (enemy.getPatience() < 50) {
-            throw new BrokenOathException(enemy.getName());
-        }
+    @Override
+    public War startWar(String name, Leader enemy) {
+        return new War(name, this, (Leader) enemy);
     }
 
     @Override
-    public War startWar(String name, Person enemy) throws NotLeaderWar {
-        if (!(enemy instanceof Leader)) {
-            throw new NotLeaderWar(enemy.getName());
+    public void endWar(Contract contract, Leader enemy) throws NotHaveWar {
+        for (War war : activeWars) {
+            if (war.equalsWar(this, enemy)) {
+                war.makePeace(contract);
+                this.removeWar(war);
+                enemy.removeWar(war);
+                return;
+            }
         }
-        return new War(name, this, (Leader) enemy);
+
+        throw new NotHaveWar(getName(), enemy.getName());
+    }
+
+    protected void addWar(War war) {
+        activeWars.add(war);
+    }
+
+    protected void removeWar(War war) {
+        activeWars.remove(war);
     }
 }

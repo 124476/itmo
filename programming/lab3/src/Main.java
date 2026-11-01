@@ -1,53 +1,58 @@
 public class Main {
     public static void main(String[] args) {
-        Leader duke = new Duke("Герцог", 100);
-        Leader prince = new Prince("Князь", 60);
-        Cook cook = new Cook("Повар карлик");
-
-        cook.escape();
-
-        try {
-            prince.accuse(duke, "дал повару сбежать и нарушил слово!");
-        } catch (BrokenOathException e) {
-            System.out.println("ВСПЫШКА КОНФЛИКТА: " + e.getMessage());
+        class Reporter {
+            void print(String text) {
+                System.out.println("\n=== " + text.toUpperCase() + " ===\n");
+            }
         }
 
-        try {
-            duke.startWar("Ошибочная война", cook);
-        } catch (NotLeaderWar e) {
-            System.out.println("ПРЕДОТВРАЩЕНА ОШИБКА: " + e.getMessage());
-        }
+        Reporter reporter = new Reporter();
+
+        Duke duke = new Duke("Герцог", 60);
+        Prince prince = new Prince("Князь", 60);
+        Cook cook = new Cook("Лучший повар");
+
+        reporter.print("Побег повара");
+
+        duke.giveEscape(cook);
 
         try {
-            War war = prince.startWar("Травяная война", duke);
+            cook.escape();
 
-            war.giveBattle("Битва на луковой грядке");
-            war.giveBattle("Сражение у каштанов");
-            war.giveBattle("Бой за специи");
+            prince.assertTo(duke.getName() + " дал сбежать " + cook.getName());
+            prince.reproachTo(duke, "нарушил свое слово");
 
-            Contract peaceTreaty = new Contract("Паштетный мир", prince, duke);
-            war.makePeace(peaceTreaty);
+            reporter.print("Война");
 
-            System.out.println("\n--- Праздник примирения ---");
-            Dish dish = cook.serveDish();
-            System.out.println("На стол подан: " + dish.name());
+            try {
+                War war = prince.startWar("Травяная война", duke);
 
-            Person guest = new Person("Иностранный гость") {
-                @Override
-                public void reactTo(String event) {
-                    System.out.println(getName() + " удивлен: " + event);
-                }
-            };
-            guest.reactTo("Герцог оказал должную честь паштету!");
+                war.startBattle("Битва на луковой грядке");
+                war.startBattle("Сражение у каштанов");
+                war.startBattle("Бой за специи");
 
-            duke.reactTo("Паштет-сюзерен превосходен!");
-
-            war.giveBattle("Запоздалая битва");
-
-        } catch (NotLeaderWar e) {
+                Contract peaceTreaty = new Contract("Паштетный мир", duke, prince);
+                war.makePeace(peaceTreaty);
+            } catch (WarEnded e) {
+                System.out.println(e.getMessage()); // Кидает ошибку, если война закончилась, а .startBattle еще раз просит
+            }
+        } catch (CantEscape e) {
             System.out.println(e.getMessage());
-        } catch (WarEnded e) {
-            System.out.println("\nОШИБКА: " + e.getMessage());
         }
+
+        reporter.print("Праздник");
+
+        Dish dish = Dish.getRandomDish();
+        cook.serveDish(dish);
+
+        Person guest = new Person("Иностранный гость") {
+            @Override
+            public void reactTo(String event) {
+                System.out.println(getName() + " удивлен: " + event);
+            }
+        };
+        guest.reactTo("Герцог оказал должную честь " + dish);
+
+        duke.reactTo(dish + " превосходен");
     }
 }

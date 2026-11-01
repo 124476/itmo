@@ -1,18 +1,28 @@
-public class Cook extends Person {
+public class Cook extends Person implements Escapable, Servable {
+    private boolean canEscape = false;
+
     public Cook(String name) {
         super(name);
     }
 
-    public void escape() {
-        System.out.println("[СЮЖЕТ] " + getName() + " тайком сбежал, чтобы не потерять место!");
-    }
-
-    public Dish serveDish() {
-        return new Dish("Паштет-сюзерен", 100);
+    protected void accuseEscape() {
+        this.canEscape = true;
     }
 
     @Override
-    public void reactTo(String event) {
-        System.out.println(getName() + " (Повар) реагирует на: " + event);
+    public void escape() throws CantEscape {
+        if (!this.canEscape) throw new CantEscape(getName());
+
+        System.out.println(getName() + " тайком сбежал");
+    }
+
+    @Override
+    public void serveDish(Dish dish) {
+        System.out.println("На стол подан: " + dish);
+    }
+
+    @Override
+    public void reactTo(String text) {
+        System.out.println(getName() + " реагирует на: " + text);
     }
 }

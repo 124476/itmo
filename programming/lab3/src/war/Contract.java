@@ -1,2 +1,0 @@
-public record Contract(String name, Leader signer1, Leader signer2) {
-}

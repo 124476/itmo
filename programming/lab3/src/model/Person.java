@@ -11,7 +11,7 @@ public abstract class Person {
         return name;
     }
 
-    public abstract void reactTo(String event);
+    public abstract void reactTo(String text);
 
     @Override
     public String toString() {
@@ -20,10 +20,12 @@ public abstract class Person {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(name, person.name);
+
+        if (this.name == null && person.name == null) return true;
+        if (this.name == null || person.name == null)  return false;
+        return this.name.equals(person.name);
     }
 
     @Override

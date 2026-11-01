@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный квиз: История ИТМО</title>
+    <style>
+        :root {
+            --primary: #003a70;
+            --accent: #00a3e0;
+            --success: #4caf50;
+            --error: #f44336;
+            --bg: #eef2f5;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 750px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            display: none;
+            padding: 40px;
+            flex-direction: column;
+            flex-grow: 1;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #start-screen {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #00509e 100%);
+            color: white;
+        }
+
+        #start-screen h1 {
+            font-size: 2.4em;
+            margin-bottom: 15px;
+        }
+
+        #start-screen p {
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .btn-main {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 163, 224, 0.4);
+        }
+
+        .btn-main:hover {
+            background: #008cc4;
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+
+        .question-count {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-title {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .img-container {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover:not(.disabled) {
+            border-color: var(--accent);
+            background: #f0f8ff;
+        }
+
+        .option.correct {
+            background: #e8f5e9 !important;
+            border-color: var(--success) !important;
+            color: #2e7d32;
+        }
+
+        .option.wrong {
+            background: #ffebee !important;
+            border-color: var(--error) !important;
+            color: #c62828;
+        }
+
+        .option.disabled {
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        .explanation-box {
+            display: none;
+            background: #eef5ff;
+            border-left: 5px solid var(--accent);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .explanation-box.show {
+            display: block;
+        }
+
+        .explanation-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .explanation-text {
+            font-size: 0.95em;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+            transition: background 0.2s;
+            width: 100%;
+            margin-top: auto; 
+        }
+
+        .btn-next:hover {
+            background: #00284d;
+        }
+
+        .btn-next.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #end-screen {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        #end-screen .icon {
+            font-size: 6em;
+            margin-bottom: 20px;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #end-screen h1 {
+            color: var(--primary);
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+        
+        #end-screen p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        #end-screen .btn-main {
+            background: var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 58, 112, 0.3);
+        }
+        #end-screen .btn-main:hover {
+            background: #00284d;
+        }
+
+        @media (max-width: 600px) {
+            .screen { padding: 25px 20px; }
+            .question-title { font-size: 1.15em; }
+            .option { padding: 12px 15px; font-size: 0.95em; }
+            #start-screen h1 { font-size: 1.8em; }
+            #end-screen .icon { font-size: 5em; }
+            #end-screen h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div id="start-screen" class="screen active">
+            <h1>История ИТМО</h1>
+            <p>Интерактивный квиз по материалам видеолекции.<br>Проверьте свои знания о выдающихся ученых и разработках вуза.</p>
+            <button class="btn-main" onclick="startQuiz()">Начать тест</button>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="question-count" id="q-count">Вопрос 1 из 5</div>
+            
+            <div class="img-container" id="q-image-container" style="display: none;">
+                <img id="q-image" src="" alt="Иллюстрация">
+            </div>
+
+            <div class="question-title" id="q-text">Текст вопроса</div>
+            
+            <div class="options" id="q-options"></div>
+
+            <div class="explanation-box" id="q-explanation">
+                <div class="explanation-title" id="exp-title"></div>
+                <div class="explanation-text" id="exp-text"></div>
+            </div>
+
+            <button class="btn-next" id="btn-next" onclick="nextQuestion()">Следующий вопрос</button>
+        </div>
+
+        <div id="end-screen" class="screen">
+            <div class="icon">🏆</div>
+            <h1>Квиз завершен!</h1>
+            <p>Вы отлично справились с тестом. Спасибо за внимание!</p>
+            <button class="btn-main" onclick="location.reload()">Пройти заново</button>
+        </div>
+
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: "Кто был директором РУЦН и первым заведующим механико-часовым отделением?",
+                options: ["А) Сергей Витте", "Б) Валентин Арбузов", "В) Норберт Завадский"],
+                correctIndex: 1,
+                explanation: "Валентин Михайлович Арбузов стоял у истоков создания механико-часового отделения, занимая должность директора училища. Он руководил процессом подготовки первых специалистов.",
+                image: null
+            },
+            {
+                text: "Кто был организатором и мастером Механико-оптического отделения, заложившим фундамент отечественной школы точной механики?",
+                options: ["А) Феодосий Галкин", "Б) Норберт Завадский", "В) Валентин Арбузов"],
+                correctIndex: 1,
+                explanation: "Норберт Болеславович Завадский был выдающимся мастером и педагогом. Он непосредственно организовывал учебный процесс в РУЦН и стал одним из первых преподавателей училища.",
+                image: null
+            },
+            {
+                text: "Кто стал главным конструктором первой отечественной электронно-цифровой машины «ЛИТМО-1»?",
+                options: ["А) Феодосий Галкин", "Б) Сергей Витте", "В) Норберт Завадский"],
+                correctIndex: 0,
+                explanation: "Доцент Феодосий Галкин стал главным конструктором ЭВМ «ЛИТМО-1». Работы над этим уникальным устройством начались в 1956 году и завершились в 1959 году.",
+                image: null
+            },
+            {
+                text: "На слайде изображена ЭВМ «ЛИТМО-1». В каком году завершились работы по созданию этого устройства?",
+                options: ["А) В 1939 году", "Б) В 1956 году", "В) В 1959 году"],
+                correctIndex: 2,
+                explanation: "Разработка первой отечественной электронно-цифровой машины «ЛИТМО-1» велась в Ленинградском институте точной механики и оптики (ЛИТМО) с 1956 по 1959 год.",
+                image: "litmo1.jpg" 
+            },
+            {
+                text: "На фото показана спутниковая тарелка на Кронверкском проспекте. Инициатором и основным разработчиком какого проекта выступил институт в 1994 году?",
+                options: ["А) Сеть RUNNet", "Б) РЛС «Редут»", "В) Система «ЛИТМО-1»"],
+                correctIndex: 0,
+                explanation: "В 1994 году, получив статус университета, ИТМО выступил инициатором и основным разработчиком сети RUNNet (Russian University Network), обеспечившей связь между вузами.",
+                image: "runnet.jpg"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let canAnswer = true;
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.remove('active');
+            document.getElementById('quiz-screen').classList.add('active');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQuestionIndex];
+            canAnswer = true;
+
+            const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+            document.getElementById('progress').style.width = `${progressPercent}%`;
+            document.getElementById('q-count').innerText = `Вопрос ${currentQuestionIndex + 1} из ${questions.length}`;
+            document.getElementById('q-text').innerText = q.text;
+
+            const imgContainer = document.getElementById('q-image-container');
+            const imgElement = document.getElementById('q-image');
+            if (q.image) {
+                imgContainer.style.display = 'block';
+                imgElement.src = q.image;
+                imgElement.onerror = function() {
+                    this.src = 'https://via.placeholder.com/600x300/cccccc/666666?text=Нет+картинки';
+                };
+            } else {
+                imgContainer.style.display = 'none';
+            }
+
+            const optionsContainer = document.getElementById('q-options');
+            optionsContainer.innerHTML = '';
+            
+            document.getElementById('q-explanation').classList.remove('show');
+            document.getElementById('btn-next').classList.remove('show');
+
+            q.options.forEach((optionText, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                btn.innerHTML = `<span>${optionText}</span>`;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, clickedElement) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const q = questions[currentQuestionIndex];
+            const allOptions = document.querySelectorAll('.option');
+            allOptions.forEach(opt => opt.classList.add('disabled'));
+            allOptions[q.correctIndex].classList.add('correct');
+
+            if (selectedIndex !== q.correctIndex) {
+                clickedElement.classList.add('wrong');
+            }
+
+            const expBox = document.getElementById('q-explanation');
+            document.getElementById('exp-title').innerText = `Правильный ответ: ${q.options[q.correctIndex]}`;
+            document.getElementById('exp-text').innerText = q.explanation;
+            expBox.classList.add('show');
+
+            const nextBtn = document.getElementById('btn-next');
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerText = 'Завершить тест';
+            } else {
+                nextBtn.innerText = 'Следующий вопрос';
+            }
+            nextBtn.classList.add('show');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+                document.querySelector('.app-container').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('quiz-screen').classList.remove('active');
+                document.getElementById('end-screen').classList.add('active');
+                document.getElementById('progress').style.width = '100%';
+            }
+        }
+    </script>
+</body>
+</html>

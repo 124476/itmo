@@ -9,5 +9,13 @@ javac -encoding UTF-8 *.java */*.java
 ````
 
 ```bash
-java -cp .:model:war:exception Main
+java -cp .:model:interface:exception:enum Main
+```
+
+```bash
+rm *.class 
+rm model/*.class 
+rm interface/*.class 
+rm enum/*.class 
+rm exception/*.class 
 ```

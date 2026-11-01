@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class War {
     private String name;
@@ -75,5 +76,25 @@ public class War {
 
     public boolean equalsWar(Leader attacker, Leader defenser) {
         return this.attacker == attacker && this.defenser == defenser|| this.defenser == attacker && this.attacker == defenser;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, attacker, defenser, warStatus);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        War war = (War) o;
+
+        return Objects.equals(name, war.name) &&
+                Objects.equals(attacker, war.attacker) &&
+                Objects.equals(defenser, war.defenser);
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " между " + this.attacker + " " + this.defenser;
     }
 }

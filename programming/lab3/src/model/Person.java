@@ -23,9 +23,7 @@ public abstract class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
 
-        if (this.name == null && person.name == null) return true;
-        if (this.name == null || person.name == null)  return false;
-        return this.name.equals(person.name);
+        return Objects.equals(this.name, person.name);
     }
 
     @Override

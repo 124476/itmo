@@ -1,4 +1,4 @@
-public class Prince extends Leader implements Assertable, Reproachable {
+public class Prince extends Leader implements IAssert, IReproach {
     public Prince(String name, double patience) {
         super(name, patience);
     }
@@ -9,12 +9,12 @@ public class Prince extends Leader implements Assertable, Reproachable {
     }
 
     @Override
-    public void assertTo(String text) {
+    public void assert_(String text) {
         System.out.println(getName() + " утверждает, что " + text);
     }
 
     @Override
-    public void reproachTo(Person person, String text) {
-        System.out.println(getName() + " упрекает " + person.getName() +  ", в том что " + text);
+    public void reproach(Person person, String text) {
+        System.out.println(getName() + " упрекает " + person +  ", в том что " + text);
     }
 }

@@ -1,1 +1,1 @@
-public record Contract(String name, Leader signer1, Leader signer2) { }
+public record Contract(String name, War war) { }

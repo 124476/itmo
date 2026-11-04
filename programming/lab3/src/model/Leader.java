@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Leader extends Person implements Battleable {
+public abstract class Leader extends Person implements IBattle {
     private double patience;
     private List<War> activeWars = new ArrayList<War>();
 
@@ -10,12 +10,12 @@ public abstract class Leader extends Person implements Battleable {
         this.patience = patience;
     }
 
-    protected double getPatience() {
+    public double getPatience() {
         return this.patience;
     }
 
-    protected void decreasePatience(double amount) {
-        this.patience = Math.max(0, this.patience - amount);
+    public void takeDamage(double damage) {
+        this.patience = Math.max(0, this.patience - damage);
     }
 
     @Override
@@ -24,17 +24,10 @@ public abstract class Leader extends Person implements Battleable {
     }
 
     @Override
-    public void endWar(Contract contract, Leader enemy) throws NotHaveWar {
-        for (War war : activeWars) {
-            if (war.equalsWar(this, enemy)) {
-                war.makePeace(contract);
-                this.removeWar(war);
-                enemy.removeWar(war);
-                return;
-            }
-        }
-
-        throw new NotHaveWar(getName(), enemy.getName());
+    public Contract endWar(War war, String nameConract) throws WarEnded {
+        Contract contract = new Contract(nameConract, war);
+        war.endWar();
+        return contract;
     }
 
     protected void addWar(War war) {

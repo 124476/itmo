@@ -1,3 +1,3 @@
-public interface Servable {
+public interface IServe {
     void serveDish(Dish dish);
 }

@@ -23,7 +23,31 @@ public class War {
 
         attacker.addWar(this);
         defenser.addWar(this);
-        logger.log(attacker.getName() + " объявил войну " + defenser.getName() + "!");
+        logger.log(attacker + " объявил войну " + defenser + "!");
+    }
+
+    public void endWar() {
+        warStatus = WarStatus.END;
+
+        attacker.removeWar(this);
+        defenser.removeWar(this);
+
+        logger.log(name + " закончена");
+    }
+
+    private boolean attackPerson(IBattle leader) {
+        double damage = Math.random() * 30;
+        leader.takeDamage(damage);
+
+        if (leader.getPatience() <= 0) {
+            logger.log(leader + " больше не может терпеть поражения!");
+
+            Contract contract = leader.endWar(this, "Паштетный мир");
+            logger.log("Заключен " + contract.name());
+            return true;
+        }
+
+        return false;
     }
 
     public void startBattle(String location) {
@@ -33,49 +57,12 @@ public class War {
 
         logger.log("Произошло сражение: " + location);
 
-        double damage = Math.random() * 40;
-        defenser.decreasePatience(damage);
-
-        if (defenser.getPatience() <= 0) {
-            logger.log(defenser.getName() + " больше не может терпеть поражения!");
-
-            try {
-                Contract peaceTreaty = new Contract("Паштетный мир", defenser, attacker);
-                defenser.endWar(peaceTreaty, attacker);
-            } catch (NotHaveWar e) {
-                System.out.println(e.getMessage());
-            }
-
-            return;
-        }
-
-        damage = Math.random() * 40;
-        attacker.decreasePatience(damage);
-
-        if (attacker.getPatience() <= 0) {
-            logger.log(attacker.getName() + " больше не может терпеть поражения!");
-
-            try {
-                Contract peaceTreaty = new Contract("Паштетный мир", attacker, defenser);
-                attacker.endWar(peaceTreaty, defenser);
-            } catch (NotHaveWar e) {
-                System.out.println(e.getMessage());
-            }
-
-            return;
-        }
+        if (attackPerson(defenser)) return;
+        attackPerson(attacker);
     }
 
-    public void makePeace(Contract contract) {
-        if (this.warStatus == WarStatus.END) throw new WarEnded(this.name);
-
-        this.warStatus = WarStatus.END;
-        logger.log("Война окончена!");
-        logger.log("Заключен " + contract.name() + " между " + contract.signer1().getName() + " и " + contract.signer2().getName());
-    }
-
-    public boolean equalsWar(Leader attacker, Leader defenser) {
-        return this.attacker == attacker && this.defenser == defenser|| this.defenser == attacker && this.attacker == defenser;
+    public WarStatus getStatus() {
+        return this.warStatus;
     }
 
     @Override

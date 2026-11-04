@@ -1,11 +1,11 @@
-public class Cook extends Person implements Escapable, Servable {
+public class Cook extends Person implements IEscape, IServe {
     private boolean canEscape = false;
 
     public Cook(String name) {
         super(name);
     }
 
-    protected void accuseEscape() {
+    public void letEscape() {
         this.canEscape = true;
     }
 

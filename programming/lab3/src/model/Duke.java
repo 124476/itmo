@@ -1,18 +1,16 @@
-public class Duke extends Leader implements GiveEscapable {
+public class Duke extends Leader implements IGiveEscape {
     public Duke(String name, double patience) {
         super(name, patience);
     }
 
     @Override
-    public void giveEscape(Person person) {
-        if (person instanceof Cook c) {
-            if (Math.random() > 0.3) {
-                c.accuseEscape();
+    public void giveEscape(IEscape person) {
+        if (Math.random() > 0.3) {
+            person.letEscape();
 
-                System.out.println(getName() + " дал тайно сбежать " + c.getName());
-            } else {
-                System.out.println(getName() + " не дал возможности сбежать " + c.getName());
-            }
+            System.out.println(getName() + " дал тайно сбежать " + person);
+        } else {
+            System.out.println(getName() + " не дал возможности сбежать " + person);
         }
     }
 

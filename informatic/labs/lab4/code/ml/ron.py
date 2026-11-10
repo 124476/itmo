@@ -215,49 +215,7 @@ class Parser:
         return {name: d}
 
 
-def encode_binary(obj):
-    if obj is None:
-        return b'\x00'
-
-    if isinstance(obj, bool):
-        # \x01 - true, \x00 - false
-        return b'\x01\x01' if obj else b'\x01\x00'
-
-    if isinstance(obj, int):
-        # 8 байта на целое число, signed - для отрицательных чисел
-        # 8 байт на хранение 2^63 (максимально по модулю число)
-        return b'\x02' + obj.to_bytes(8, byteorder='big', signed=True)
-
-    if isinstance(obj, float):
-        # числа с плавающей запятой
-        b = str(obj).encode('utf-8')
-        return b'\x03' + len(b).to_bytes(4, byteorder='big') + b
-
-    if isinstance(obj, str):
-        b = obj.encode('utf-8')
-        # 4 байта на длину (2^32) + сами байты строки
-        return b'\x04' + len(b).to_bytes(4, byteorder='big') + b
-
-    if isinstance(obj, list):
-        res = b'\x05' + len(obj).to_bytes(4, byteorder='big')
-        for item in obj:
-            res += encode_binary(item)
-
-        return res
-
-    if isinstance(obj, dict):
-        res = b'\x06' + len(obj).to_bytes(4, byteorder='big')
-        for k, v in obj.items():
-            res += encode_binary(k) + encode_binary(v)
-
-        return res
-
-    raise TypeError(f"Неподдерживаемый тип: {type(obj)}")
-
-
-def encode(text):
+def from_ron(text):
     tokens = tokenize(text)
     parser = Parser(tokens)
-    d = parser.parse()
-    bs = encode_binary(d)
-    return bs
+    return parser.parse()

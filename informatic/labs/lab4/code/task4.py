@@ -1,31 +1,31 @@
+import time
 import sys
 
-from ml.yaml import BinaryDecoder
-from ml.xml import to_xml
+from task1 import run as run1
+from task2 import run as run2
 
+FILE_NAME = sys.argv[1] if len(sys.argv) > 1 else "schedule"
+ITERATIONS = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 
-def run(file_name):
-    input_path = f"../data/{file_name}/{file_name}.bin"
-    output_path = f"../data/{file_name}/{file_name}.xml"
+def time_custom():
+    start = time.time()
+    for _ in range(ITERATIONS):
+        run1(FILE_NAME)
 
-    try:
-        with open(input_path, "rb") as f:
-            bs = f.read()
-    except FileNotFoundError:
-        print(f"Ошибка: файл {input_path} не найден")
-        return None
+    return time.time() - start
 
-    decoder = BinaryDecoder(bs)
-    obj = decoder.decode()
-    xml_text = to_xml(obj)
+def time_libs():
+    start = time.time()
+    for _ in range(ITERATIONS):
+        run2(FILE_NAME)
+    return time.time() - start
 
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(xml_text)
+run1(FILE_NAME)
+run2(FILE_NAME)
 
-    return xml_text
+time_custom = time_custom()
+time_libs = time_libs()
 
-
-if __name__ == "__main__":
-    file_name = sys.argv[1] if len(sys.argv) > 1 else "schedule"
-    result = run(file_name)
-    print(result)
+print(f"Собственный код:\t{time_custom:.4f} сек.")
+print(f"Готовые библиотеки:\t{time_libs:.4f} сек.")
+print(f"Разница:\t\t{time_custom / time_libs:.2f}x")

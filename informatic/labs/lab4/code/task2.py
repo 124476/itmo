@@ -1,13 +1,34 @@
 import sys
+import pyron
+import yaml
 
-from ml.ron import encode
-from ml.yaml import BinaryDecoder, to_yaml
+
+def clean_data(obj):
+    if isinstance(obj, tuple):
+        # Если это кортеж, превращаем его в список
+        return [clean_data(i) for i in obj]
+
+    if isinstance(obj, list) and obj:
+        return [clean_data(item) for item in obj]
+
+    if isinstance(obj, dict):
+        if "!__name__" in obj:
+            if len(obj) == 1:
+                return obj["!__name__"]
+
+            obj = {
+                obj["!__name__"]: {k: clean_data(v) for k, v in obj.items() if k != "!__name__"}
+            }
+            return obj
+
+        return {k: clean_data(v) for k, v in obj.items()}
+
+    return obj
 
 
 def run(file_name):
     input_path = f"../data/{file_name}/{file_name}.ron"
-    bin_path = f"../data/{file_name}/{file_name}.bin"
-    yaml_path = f"../data/{file_name}/{file_name}.yaml"
+    output_path = f"../data/{file_name}/{file_name}_lib.yaml"
 
     try:
         with open(input_path, "r", encoding="utf-8") as f:
@@ -16,18 +37,11 @@ def run(file_name):
         print(f"Ошибка: файл {input_path} не найден")
         return None
 
-    bs = encode(ron_text)
-    with open(bin_path, "wb") as f:
-        f.write(bs)
+    obj = pyron.loads(ron_text, preserve_class_names=True)
+    obj = clean_data(obj)
 
-    with open(bin_path, "rb") as f:
-        read_bs = f.read()
-
-    decoder = BinaryDecoder(read_bs)
-    data = decoder.decode()
-    yaml_text = to_yaml(data)
-
-    with open(yaml_path, "w", encoding="utf-8") as f:
+    yaml_text = yaml.dump(obj, allow_unicode=True, sort_keys=False, default_flow_style=False)
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(yaml_text)
 
     return yaml_text

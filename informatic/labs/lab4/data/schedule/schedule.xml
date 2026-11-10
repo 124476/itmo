@@ -9,18 +9,18 @@
       <schedule>
         <Class>
           <id>1</id>
-          <title>English A1 / Английский язык A1</title>
-          <class_format>Очный</class_format>
+          <title>English A1 / РђРЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє A1</title>
+          <class_format>РћС‡РЅС‹Р№</class_format>
           <type>
             <Type>
               <id>1</id>
-              <title>Практика</title>
+              <title>РџСЂР°РєС‚РёРєР°</title>
             </Type>
           </type>
           <campus>
             <Campus>
               <id>0</id>
-              <address>Кронверкский пр., д.49, лит.А</address>
+              <address>РљСЂРѕРЅРІРµСЂРєСЃРєРёР№ РїСЂ., Рґ.49, Р»РёС‚.Рђ</address>
             </Campus>
           </campus>
           <time>
@@ -33,30 +33,30 @@
           <auditory>
             <Auditory>
               <id>1338</id>
-              <name>ауд. 1338</name>
+              <name>Р°СѓРґ. 1338</name>
             </Auditory>
           </auditory>
           <teacher>
             <Teacher>
               <id>0</id>
-              <name>Иванова Полина Витальевна</name>
+              <name>РРІР°РЅРѕРІР° РџРѕР»РёРЅР° Р’РёС‚Р°Р»СЊРµРІРЅР°</name>
             </Teacher>
           </teacher>
         </Class>
         <Class>
           <id>2</id>
-          <title>English A1 / Английский язык A1</title>
-          <class_format>Очный</class_format>
+          <title>English A1 / РђРЅРіР»РёР№СЃРєРёР№ СЏР·С‹Рє A1</title>
+          <class_format>РћС‡РЅС‹Р№</class_format>
           <type>
             <Type>
               <id>1</id>
-              <title>Практика</title>
+              <title>РџСЂР°РєС‚РёРєР°</title>
             </Type>
           </type>
           <campus>
             <Campus>
               <id>0</id>
-              <address>Кронверкский пр., д.49, лит.А</address>
+              <address>РљСЂРѕРЅРІРµСЂРєСЃРєРёР№ РїСЂ., Рґ.49, Р»РёС‚.Рђ</address>
             </Campus>
           </campus>
           <time>
@@ -69,13 +69,13 @@
           <auditory>
             <Auditory>
               <id>1338</id>
-              <name>ауд. 1338</name>
+              <name>Р°СѓРґ. 1338</name>
             </Auditory>
           </auditory>
           <teacher>
             <Teacher>
               <id>0</id>
-              <name>Иванова Полина Витальевна</name>
+              <name>РРІР°РЅРѕРІР° РџРѕР»РёРЅР° Р’РёС‚Р°Р»СЊРµРІРЅР°</name>
             </Teacher>
           </teacher>
         </Class>

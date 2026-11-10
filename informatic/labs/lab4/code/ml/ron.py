@@ -17,7 +17,7 @@ def tokenize(text):
 
             continue
 
-        if char == "/" and text[i + 1] == "*":  # игнор комментариев /*
+        if char == "/" and i + 1 < n and text[i + 1] == "*":  # игнор комментариев /*
             count_comm = 1
             i += 2
 
@@ -71,13 +71,11 @@ def tokenize(text):
             i += 1
             while i < n and (text[i].isdigit() or text[i] == "."):
                 i += 1
+
             num_str = text[start:i]
+            num = float(num_str) if "." in num_str else int(num_str)
 
-            if "." in num_str:
-                tokens.append(("FLOAT", float(num_str)))
-                continue
-
-            tokens.append(("INT", int(num_str)))
+            tokens.append(("NUMBER", num))
             continue
 
         if char in "()[]{}:,":
@@ -101,14 +99,14 @@ class Parser:
 
         return None
 
-    def consume(self, expected_type=None, expected_val=None):
+    def consume(self, *expected_types, expected_val=None):
         """Берет текущий токен и сдвигает указатель вперед"""
         token = self.peek()
         if not token:
             raise SyntaxError("Неожиданный конец файла")
 
-        if expected_type and token[0] != expected_type:
-            raise SyntaxError(f"Ожидался тип {expected_type}, получен {token[0]} (значение: {token[1]})")
+        if expected_types and token[0] not in expected_types:
+            raise SyntaxError(f"Ожидался тип {' или '.join(expected_types)}, получен {token[0]} (значение: {token[1]})")
 
         if expected_val and token[1] != expected_val:
             raise SyntaxError(f"Ожидался символ '{expected_val}', получен '{token[1]}'")
@@ -122,7 +120,7 @@ class Parser:
         if not token:
             raise SyntaxError("Ожидалось значение, но файл закончился")
 
-        if token[0] in ("STRING", "INT", "FLOAT", "BOOL"):
+        if token[0] in ("STRING", "NUMBER", "BOOL"):
             return self.consume()[1]
 
         if token[1] == "[":
@@ -143,31 +141,37 @@ class Parser:
 
         raise SyntaxError(f"Неожиданный токен: {token}")
 
-    def parse_array(self):
-        """Парсит массивы"""
-        self.consume()
+    def parse_array_values(self, symbol):
+        """Вспомогательная функция для парсинга объектов типа массивов"""
         arr = []
-        while self.peek() and self.peek()[1] != "]":
+        while self.peek() and self.peek()[1] != symbol:
             arr.append(self.parse())
             if self.peek() and self.peek()[1] == ",":
                 self.consume()
 
-        self.consume(expected_val="]")
+        self.consume(expected_val=symbol)
         return arr
 
-    def parse_dict(self):
-        """Парсит словари"""
-        self.consume()
+    def parse_key_values(self, symbol, *types):
+        """Вспомогательная функция для парсинга объектов типа словарей"""
         d = {}
-        while self.peek() and self.peek()[1] != "}":
-            key = self.consume(expected_type='STRING')[1]
+        while self.peek() and self.peek()[1] != symbol:
+            key = self.consume(*types)[1]
             self.consume(expected_val=":")
             d[key] = self.parse()
             if self.peek() and self.peek()[1] == ",":
                 self.consume()
 
-        self.consume(expected_val="}")
+        self.consume(expected_val=symbol)
         return d
+
+    def parse_array(self):
+        self.consume()
+        return self.parse_array_values("]")
+
+    def parse_dict(self):
+        self.consume()
+        return self.parse_key_values("}", "NAME", "STRING")
 
     def parse_tuple(self):
         self.consume()
@@ -179,39 +183,14 @@ class Parser:
 
         # если key: value -> это структура, иначе это кортеж
         if self.peek()[0] == "NAME" and self.pos + 1 < len(self.tokens) and self.tokens[self.pos + 1][1] == ":":
-            d = {}
-            while self.peek() and self.peek()[1] != ")":
-                key = self.consume(expected_type="NAME")[1]
-                self.consume(expected_val=":")
-                d[key] = self.parse()
-                if self.peek() and self.peek()[1] == ",":
-                    self.consume()
+            return self.parse_key_values(")", "NAME")
 
-            self.consume(expected_val=")")
-            return d
-
-        arr = []
-        while self.peek() and self.peek()[1] != ")":
-            arr.append(self.parse())
-            if self.peek() and self.peek()[1] == ",":
-                self.consume()
-
-        self.consume(expected_val=")")
-        return arr
+        return self.parse_array_values(")")
 
     def parse_struct(self):
-        """Парсит структуры"""
-        name = self.consume(expected_type='NAME')[1]  # Читаем имя (Schedule, Class...)
-        self.consume(expected_val='(')
-        d = {}
-        while self.peek() and self.peek()[1] != ")":
-            key = self.consume(expected_type='NAME')[1]
-            self.consume(expected_val=":")
-            d[key] = self.parse()
-            while self.peek() and self.peek()[1] == ",":
-                self.consume()
-
-        self.consume(expected_val=")")
+        name = self.consume()[1]
+        self.consume()
+        d = self.parse_key_values(")", "NAME")
         return {name: d}
 
 

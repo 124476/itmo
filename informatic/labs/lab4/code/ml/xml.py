@@ -1,49 +1,29 @@
 def xml_escape(text):
     return str(text).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-def rec_xml(obj, tag_name="", indent=0):
-    spacing = " " * 2 * indent
-    xml = ""
+def rec_xml(obj, tag="", indent=0):
+    spacing = "  " * indent
+
+    if not isinstance(obj, (dict, list)):
+        val = str(obj).lower() if isinstance(obj, bool) else str(obj)
+        return f"{spacing}<{tag}>{xml_escape(val)}</{tag}>\n"
+
+    if not obj:
+        return f"{spacing}<{tag}/>\n" if tag else ""
+
+    xml = f"{spacing}<{tag}>\n" if tag else ""
+    indent = indent + 1 if tag else indent
 
     if isinstance(obj, dict):
         for k, v in obj.items():
-            if isinstance(v, list) and len(v) == 0: # пустой массив закрываем тегом <../>
-                xml += f"{spacing}<{k}/>\n"
-                continue
-
-            if isinstance(v, (dict, list)):
-                xml += f"{spacing}<{k}>\n"
-                xml += rec_xml(v, "", indent + 1)
-                xml += f"{spacing}</{k}>\n"
-                continue
-
-            val = str(v).lower() if isinstance(v, bool) else str(v)
-            xml += f"{spacing}<{k}>{xml_escape(val)}</{k}>\n"
-
-        return xml
-
-    if isinstance(obj, list):
-        if not obj: # пустой массив закрываем тегом <../>
-            xml += f"{spacing}<{tag_name}/>\n"
-            return xml
-
-        if tag_name:
-            xml += f"{spacing}<{tag_name}>\n"
-            current_indent = indent + 1
-        else:
-            current_indent = indent
-
+            xml += rec_xml(v, k, indent)
+    elif isinstance(obj, list):
         for item in obj:
-            xml += rec_xml(item, "item", current_indent)
+            xml += rec_xml(item, "item", indent)
 
-        if tag_name:
-            xml += f"{spacing}</{tag_name}>\n"
-
-        return xml
-
-    val = str(obj).lower() if isinstance(obj, bool) else str(obj)
-    xml += f"{spacing}<{tag_name}>{xml_escape(val)}</{tag_name}>\n"
+    xml += f"{spacing}</{tag}>\n" if tag else ""
     return xml
+
 
 def to_xml(obj):
     body = rec_xml(obj)

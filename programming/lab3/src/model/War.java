@@ -8,12 +8,12 @@ public class War {
     private Leader defenser;
     private WarStatus warStatus;
 
-    class WarLog {
+    private class WarLog {
         void log(String message) {
             System.out.println("[" + War.this.name + "] " + message);
         }
     }
-    WarLog logger = new WarLog();
+    private final WarLog logger = new WarLog();
 
     public War(String name, Leader attacker, Leader defenser) {
         this.name = name;
@@ -67,7 +67,7 @@ public class War {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, attacker, defenser, warStatus);
+        return Objects.hash(name, attacker, defenser);
     }
 
     @Override

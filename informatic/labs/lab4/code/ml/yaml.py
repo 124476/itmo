@@ -15,7 +15,7 @@ def to_yaml(obj, indent=0):
 
         return "\n".join(lines)
 
-    elif isinstance(obj, list):
+    if isinstance(obj, list):
         if not obj:
             return "[]"
 

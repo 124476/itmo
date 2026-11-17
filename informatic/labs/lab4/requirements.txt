@@ -1,2 +1,3 @@
-python-ron
-PyYAML
+python-ron>=0.2.5
+PyYAML>=6.0.3
+xmltodict>=1.0.4

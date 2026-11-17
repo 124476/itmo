@@ -1,5 +1,4 @@
 import json
-import pprint
 
 data = {
     "GameConfig": {
@@ -21,8 +20,8 @@ data = {
     }
 }
 
-json_text = json.dumps(data, indent=2, ensure_ascii=False)
+json_text = json.dumps(data, indent=2)
 print(json_text)
 
-restored = json.loads(json_text)
-pprint.pprint(restored, sort_dicts=False)
+data = json.loads(json_text)
+print(data)

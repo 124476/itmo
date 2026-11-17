@@ -40,7 +40,7 @@ def run(file_name):
     obj = pyron.loads(ron_text, preserve_class_names=True)
     obj = clean_data(obj)
 
-    yaml_text = yaml.dump(obj, allow_unicode=True, sort_keys=False, default_flow_style=False)
+    yaml_text = yaml.dump(obj, allow_unicode=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(yaml_text)
 

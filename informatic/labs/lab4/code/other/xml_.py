@@ -23,5 +23,7 @@ data = {
 }
 
 xml_text = xmltodict.unparse(data, pretty=True)
-
 print(xml_text)
+
+data = xmltodict.parse(xml_text)
+print(data)

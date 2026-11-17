@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class War {
     private String name;
-    private Leader attacker;
-    private Leader defenser;
+    private IBattle attacker;
+    private IBattle defenser;
     private WarStatus warStatus;
 
     private class WarLog {
@@ -15,7 +15,7 @@ public class War {
     }
     private final WarLog logger = new WarLog();
 
-    public War(String name, Leader attacker, Leader defenser) {
+    public War(String name, IBattle attacker, IBattle defenser) {
         this.name = name;
         this.warStatus = WarStatus.WAR;
         this.attacker = attacker;

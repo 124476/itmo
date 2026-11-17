@@ -19,8 +19,8 @@ public abstract class Leader extends Person implements IBattle {
     }
 
     @Override
-    public War startWar(String name, Leader enemy) {
-        return new War(name, this, (Leader) enemy);
+    public War startWar(String name, IBattle enemy) {
+        return new War(name, this, enemy);
     }
 
     @Override
@@ -30,11 +30,11 @@ public abstract class Leader extends Person implements IBattle {
         return contract;
     }
 
-    protected void addWar(War war) {
+    public void addWar(War war) {
         activeWars.add(war);
     }
 
-    protected void removeWar(War war) {
+    public void removeWar(War war) {
         activeWars.remove(war);
     }
 }
